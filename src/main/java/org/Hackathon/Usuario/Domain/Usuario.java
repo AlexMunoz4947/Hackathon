@@ -1,26 +1,31 @@
 package org.Hackathon.Usuario.Domain;
 
 import jakarta.persistence.*;
+import org.Hackathon.Reserva.Domain.Reserva;
+
+import java.util.List;
 
 @Entity
 @Table(name = "usuario")
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idUsuario;
+    private int idUsuario;
 
     private String nombre;
     private String correoElectronico;
     private String contraseña;
     private String telefono;
 
+    @OneToMany(mappedBy = "usuario")
+    private List<Reserva> reservas;
 
     // Getters y setters
-    public Long getIdUsuario() {
+    public int getIdUsuario() {
         return idUsuario;
     }
 
-    public void setIdUsuario(Long idUsuario) {
+    public void setIdUsuario(int idUsuario) {
         this.idUsuario = idUsuario;
     }
 
